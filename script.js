@@ -1,24 +1,39 @@
 console.log('To-Do List应用已加载');
 
-const currentDateElement= document.getElementById('current-date');
+document.addEventListener('DOMContentLoaded', function(){
+    console.log('DOM内容已加载,开始初始化应用');
+    initApp();
+});
+
+function initApp(){
+    console.log('To-Do List应用初始化');
+
+    setCurrentDate();
+
+    loadTasks();
+
+    setupEventListeners();
+
+    console.log('To-Do List应用初始化完成');
+}
 
 function setCurrentDate(){
-    const date = new Date();
+    const dateElement= document.getElementById('current-date');
+    const now= new Date();
     const options={
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric'
     };
-    const formattedDate = date.toLocaleDateString('zh-CN', options);
-    currentDateElement.textContent = formattedDate;
+    dateElement.textContent = date.toLocaleDateString('zh-CN', options);
 }
 
-function initApp(){
-    console.log('To-Do List应用初始化');
-    setCurrentDate();
-
-    console.log('To-Do List应用初始化完成');
+function loadTasks(){
+    console.log('加载任务列表');
+    // 这里可以添加从本地存储或服务器加载任务的代码
 }
 
-document.addEventListener('DOMContentLoaded', initApp);
+function setupEventListeners(){
+    console.log('设置事件监听器');
+}
