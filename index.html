@@ -1,130 +1,47 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <head>
-        <!--basic metadata-->
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="一个简单的待办事项清单应用" />
-        <meta name="keywords" content="待办事项, 任务管理, 个人项目, HTML, CSS, JavaScript,生产力工具" />
-
-        <!--web title-->
-        <title>To-Do List</title>
-        
-        <!--stylesheet-->
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>我的待办清单</title>
         <link rel="stylesheet" href="style.css">
-
-        <!-- 字体图标库 -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-        <!--web icon-->
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✅</text></svg>">
-
-        <!-- iOS home icon -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    </head>
-    <body>
-        <!--app container-->
-        <div class="container">
-            
-            <!--header area-->
-            <header class="header" role="banner">
-                <div class="header-content">
-                    <h1 class="title">待办事项清单</h1>
-                    <p class="current-date" id="current-date">加载中...</p>
-                    <p class="description">
-                        一个简单易用的待办事项清单应用，帮助你高效管理每日任务，提高生产力。
-                    </p>
-                </div>
-            </header>
-
-            <!--main area-->
-            <main class="main" role="main">
-
-                <!--input area-->
-                <section class="input-section" aria-label="输入新的待办事项">
-                    <div class="input-container">
-                        <div class="inpute group">
-                            <input type="text" id="task-input" class="task-input" placeholder="添加新的待办事项..." aria-label="待办事项输入框" maxlength="200"/>
-                        
-                        <button id="add-btn" class="add-btn" aria-label="添加待办事项">
-                            <i class="fa fa-plus"></i>
-                            添加待办事项
-                        </button>
-                        </div>
-                        <p class="input-hint">按回车键或点击“添加待办事项”按钮添加任务</p>
-                    </div>
-                </section>
-
-                <!--control area-->
-                <section class="control-section" aria-label="待办事项控制">
-                    <div class="stats-container">
-                        <div class="stat-items">
-                            <span class=""stat-label">总任务数：</span>
-                            <span id="total-tasks" class="stat-value">0</span>
-                        </div>
-                        <div class="stat-items">
-                            <span class="stat-label">已完成任务数：</span>
-                            <span id="completed-tasks" class="stat-value">0</span>
-                        </div>
-                        <div class="stat-items">
-                            <span class="stat-label">未完成任务数：</span>
-                            <span id="pending-tasks" class="stat-value">0</span>
-                        </div>
-                    </div>
-                    <div class="filter-container">
-                        <h2 class="filter-title">筛选任务：</h2>
-                        <div class="filter-buttons">
-                            <button class="filter-btn-active" data-filter="pending" aria-label="显示所有任务">全部</button>
-                            <button class="filter-btn" data-filter="pending" aria-label="显示未完成任务">未完成</button>
-                            <button class="filter-btn" data-filter="pending" aria-label="显示已完成任务">已完成</button>    
-                        </div>
-                    </div>
-                </section>
-
-                <!--task list area-->
-                <section class="task-section" aria-label="待办事项列表">
-                    <div class="task-header">
-                        <h2 class="task-title">待办事项</h2>
-                        <button id="clear-completed-" class="clear-btn" aria-label="清除已完成任务" title="清除已完成任务">清除已完成任务</button>
-                    </div>
-                    <div class="task-list-container">
-                        <ul id="task-list" class="task-list" role="list">
-                            <!--任务项将动态添加到这里-->
-                            <li class="task-item" role="listitem">
-                                <div class="task-content">
-                                    <input type="checkbox" class="task-checkbox" aria-label="标记任务为完成状态" id="task-1"/>
-                                    <label class="task-text">示例任务：学习HTML、CSS和JavaScript</label>
-                                </div>
-                                <div class="task-actions">
-                                    <button class="edit-btn" aria-label="编辑任务" title="编辑任务">
-                                    </button>
-                                    <button class="delete-btn" aria-label="删除任务" title="删除此任务">
-                                    </button>
-                                </div>
-                            </li>    
-                        </ul>
-
-                        <!-- 空状态提示 -->
-                        <div id="empty-state" class="empty-state" style="display: none;">
-                            <div class="empty-icon">
-                                <i class="fas fa-clipboard-list"></i>
-                            </div>
-                            <h3 class="empty-title">暂无任务</h3>
-                            <p class="empty-description">
-                                开始添加你的第一个任务吧！<br>
-                                点击上方的"添加任务"按钮或直接输入任务内容。
-                            </p>
-                        </div>
-                    </div>
-                </section>
-            </main>
-
-            <footer class="footer">
-                <p>Copyright &copy; 2025 个人项目 | To-Do List | 使用HTML、CSS、JS构建</p>
-            </footer>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>我的待办清单</h1>
+        </header>
+        <!-- 输入区域 -->
+        <div class="input-section">
+            <input type="text" id="task-input" placeholder="添加新任务...">
+            <button id="add-btn">添加</button>
         </div>
-
-        <script src="script.js"></script>
-    </body>
+        <!-- 任务列表 -->
+        <div class="task-section">
+<h2>任务列表</h2>
+<ul id="task-list">
+<!-- 任务将通过JS动态添加 -->
+<!-- 示例任务（稍后删除） -->
+<li class="task-item">
+<input type="checkbox" class="task-checkbox">
+<span class="task-text">学习HTML</span>
+<button class="delete-btn">删除</button>
+</li>
+<li class="task-item">
+<input type="checkbox" class="task-checkbox" checked>
+<span class="task-text completed">学习CSS</span>
+<button class="delete-btn">删除</button>
+</li>
+</ul>
+        </div>
+        <!-- 统计信息 -->
+        <div class="stats">
+            <p>总计任务：<span id="total-tasks">2</span></p>
+            <p>已完成：<span id="completed-tasks">1</span></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
 </html>
