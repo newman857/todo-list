@@ -17,7 +17,6 @@ body {
     max-width: 600px;
     margin: 0 auto;
     background: white;
-    border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
 }
@@ -33,11 +32,6 @@ header h1 {
     font-size: 2rem;
 }
 
-header i {
-    margin-right: 10px;
-    color: #4CAF50;
-}
-
 /* 4. 输入区域样式 */
 .input-section {
     display: flex;
@@ -49,7 +43,6 @@ header i {
     flex: 1;
     padding: 12px 15px;
     border: 2px solid #ddd;
-    border-radius: 5px;
     font-size: 16px;
 }
 
@@ -63,7 +56,6 @@ header i {
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
@@ -90,8 +82,12 @@ header i {
     padding: 15px;
     background: #f9f9f9;
     margin-bottom: 10px;
-    border-radius: 5px;
-    border-left: 4px solid #4CAF50;
+    transition: all 0.3s ease;
+}
+
+.task-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .task-checkbox {
@@ -108,19 +104,20 @@ header i {
 .task-text.completed {
     text-decoration: line-through;
     color: #888;
+    opacity:0.7;
 }
 
 .delete-btn {
     padding: 6px 12px;
-    background-color: #ff4444;
+    background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 3px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .delete-btn:hover {
-    background-color: #ff2222;
+    background-color: #45a049;
 }
 
 /* 6. 统计信息样式 */
@@ -145,4 +142,12 @@ header i {
     #add-btn {
         width: 100%;
     }
+}
+
+/* 空状态提示 */
+.empty-msg {
+    text-align: center;
+    color: #888;
+    padding: 30px;
+    font-style: italic;
 }

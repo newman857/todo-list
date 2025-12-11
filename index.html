@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>我的待办清单</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的待办清单</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -19,21 +22,21 @@
         </div>
         <!-- 任务列表 -->
         <div class="task-section">
-<h2>任务列表</h2>
-<ul id="task-list">
-<!-- 任务将通过JS动态添加 -->
-<!-- 示例任务（稍后删除） -->
-<li class="task-item">
-<input type="checkbox" class="task-checkbox">
-<span class="task-text">学习HTML</span>
-<button class="delete-btn">删除</button>
-</li>
-<li class="task-item">
-<input type="checkbox" class="task-checkbox" checked>
-<span class="task-text completed">学习CSS</span>
-<button class="delete-btn">删除</button>
-</li>
-</ul>
+            <h2>任务列表</h2>
+            <ul id="task-list">
+                <!-- 任务将通过JS动态添加 -->
+                <!-- 示例任务（稍后删除） -->
+                <li class="task-item">
+                    <input type="checkbox" class="task-checkbox">
+                    <span class="task-text">学习HTML</span>
+                    <button class="delete-btn">删除</button>
+                </li>
+                <li class="task-item">
+                    <input type="checkbox" class="task-checkbox" checked>
+                    <span class="task-text completed">学习CSS</span>
+                    <button class="delete-btn">删除</button>
+                </li>
+            </ul>
         </div>
         <!-- 统计信息 -->
         <div class="stats">
@@ -41,7 +44,8 @@
             <p>已完成：<span id="completed-tasks">1</span></p>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
+
 </html>
