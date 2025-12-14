@@ -22,6 +22,27 @@
         </div>
         <!-- 任务列表 -->
         <div class="task-section">
+            <div class="filter-section">
+                <h3 class="filter-title">筛选任务</h3>
+
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <span>全部</span>
+                        <span class="badge" id="total-badge">0</span>
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <span>已完成</span>
+                        <span class="badge" id="completed-badge">0</span>
+                    </button>
+                    <button class="filter-btn" data-filter="pending">
+                        <span>未完成</span>
+                        <span class="badge" id="pending-badge">0</span>
+                    <button class="filter-btn" data-filter="today">
+                        <span>今日任务</span>
+                        <span class="badge" id="today-badge">0</span>
+                    </button>
+                </div>
+            </div>
             <h2>任务列表</h2>
             <ul id="task-list">
                 <!-- 任务将通过JS动态添加 -->
