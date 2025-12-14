@@ -8,10 +8,25 @@ const totalTasks = document.getElementById('total-tasks');
 const completedTasks = document.getElementById('completed-tasks');
 
 // 任务数据数组（示例数据）
-let tasks = [
-    { id: 1, text: '学习HTML', completed: false },
-    { id: 2, text: '学习CSS', completed: true }
-];
+let tasks = loadFromLocalStorage();
+
+function saveToLocalStorage() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    console.log('任务已保存到本地存储');
+}
+
+function loadFromLocalStorage() {
+    const storedTasks = localStorage.getItem('tasks');
+
+    if (storedTasks) {
+        console.log('从本地存储加载任务');
+        return JSON.parse(storedTasks);
+    }
+    else {
+        console.log('本地存储中无任务，初始化为空数组');
+        return [];
+    }
+}
 
 // 初始化函数
 function init() {
@@ -114,6 +129,7 @@ function addTask() {
     updateStats();
 
     console.log(`添加任务: ${taskText}`);
+    saveToLocalStorage();
 }
 
 // 删除任务函数
@@ -123,6 +139,7 @@ function deleteTask(id) {
     console.log('当前任务列表:', tasks);
     renderTasks();
     updateStats();
+    saveToLocalStorage();
 }
 
 // 切换任务状态
