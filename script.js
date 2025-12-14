@@ -58,8 +58,38 @@ function handleTaskListChange(e) {
 
 // 更新统计信息
 function updateStats() {
-    // 稍后实现
+    const total = tasks.length;
+    const completed = tasks.filter(task => task.completed).length;
+    const pending = total - completed;
+    const completionRate = total > 0 ? ((completed / total) * 100): 0;
+
+    document.getElementById('total-tasks').textContent = total;
+    document.getElementById('completed-tasks').textContent = completed;
+    document.getElementById('pending-tasks').textContent = pending;
+    document.getElementById('completion-rate').textContent = '${completionRate}%';
+
+    updateProgressBar(completionRate);
+
+    animateStatChange();
 };
+
+function updateProgressBar(percentage) {
+    const progressBar = document.querySelector('.progress-bar-fill');
+    if(progressBar){
+        progressBar.style.width = '${percentage}%';
+        progressBar.style.backgroundColor = percentage === 100 ? '#10b981' : percentage >=75 ? '#3b82f6': percentage >= 50 ? '#f59e0b' : '#ef4444';
+    }
+}
+
+function animateStatChange() {
+    const stats = document.querySelectorAll('.stats-value');
+    stats.forEach(el=> {
+        el.classList.add('stat-updating');
+        setTimeout(() => {
+            el.classList.remove('stat-updating');
+        }, 500);
+    });
+}
 
 // 渲染任务列表
 function renderTasks() {
@@ -130,6 +160,7 @@ function addTask() {
 
     console.log(`添加任务: ${taskText}`);
     saveToLocalStorage();
+    checkEmptyState();
 }
 
 // 删除任务函数
@@ -140,6 +171,7 @@ function deleteTask(id) {
     renderTasks();
     updateStats();
     saveToLocalStorage();
+    checkEmptyState();
 }
 
 // 切换任务状态
@@ -165,6 +197,26 @@ taskInput.addEventListener('keypress', function(e) {
         addTask();
     }
 });
+
+function checkEmptyState() {
+    const emptyState=document.querySelector('.empty-state');
+    const taskList=document.getElementById('task-list');
+    if(tasks.length===0){
+        emptyState.style.display='flex';
+        taskList.style.display='none';
+
+        animateEmptyState();
+    }
+    else{
+        emptyState.style.display='none';
+        taskList.style.display='block';
+    }
+}
+
+function animateEmptyState() {
+    const emptyIcon=document.querySelector('.empty-state-icon');
+    emptyIcon.style.animation='float 3s ease-in-out infinite';
+}
 
 // 页面加载时初始化
 document.addEventListener('DOMContentLoaded', init);

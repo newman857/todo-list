@@ -82,29 +82,59 @@ header h1 {
     padding: 15px;
     background: #f9f9f9;
     margin-bottom: 10px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+    animation:slideIn 0.3s ease forwards;
 }
 
 .task-item:hover {
-    transform: translateX(5px);
+    transform: translateY(-2px);
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.completed {
+    background: linear-gradient(90deg,#f0f9ff 0%,#e6f7ff 100%);
+    border-left:4px solid #10b981;
+}
+
+.task-item.removing {
+    animation: slideOut 0.3s ease forwards;
 }
 
 .task-checkbox {
     margin-right: 15px;
     width: 20px;
     height: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.task-checkbox.checked {
+    background-color: #10b981;
+    border-color: #10b981;
 }
 
 .task-text {
     flex: 1;
     font-size: 16px;
+    transition:all 0.3s ease;
+    position:relative;
 }
 
 .task-text.completed {
     text-decoration: line-through;
     color: #888;
     opacity:0.7;
+}
+
+.task-text.completed::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #10b981;
+  animation: strikeThrough 0.3s ease forwards;
 }
 
 .delete-btn {
@@ -144,10 +174,73 @@ header h1 {
     }
 }
 
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+        max-height: 100px;
+    }
+    to {
+        opacity: 0;
+        transform: translateX(20px);
+        max-height: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@keyframes strikeThrough {
+  to {
+    width: 100%;
+  }
+}
+
 /* 空状态提示 */
-.empty-msg {
-    text-align: center;
-    color: #888;
-    padding: 30px;
-    font-style: italic;
+.empty-state {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: var(--border-radius);
+  border: 2px dashed #cbd5e1;
+  margin: 2rem 0;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.empty-title {
+  font-size: 1.5rem;
+  color: #334155;
+  margin-bottom: 0.5rem;
+}
+
+.empty-subtitle {
+  color: #64748b;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.empty-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
 }
